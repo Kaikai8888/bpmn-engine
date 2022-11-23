@@ -9,11 +9,11 @@
     <bpmn:startEvent id="StartEvent_1" name="Start">
       <bpmn:outgoing>toFirstScriptTask</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:scriptTask id="scriptTask1" name="Script&#10;" scriptFormat="JavaScript">
+    <bpmn:scriptTask id="scriptTask1" name="Script&#10;" >
       <bpmn:incoming>toFirstScriptTask</bpmn:incoming>
       <bpmn:incoming>toReturnScriptTask</bpmn:incoming>
       <bpmn:outgoing>toFirstUserTask</bpmn:outgoing>
-      <bpmn:script>next()</bpmn:script>
+      <bpmn:script>console.log('scriptTask1');next();</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:userTask id="userTask1" name="Wait for user">
       <bpmn:incoming>toFirstUserTask</bpmn:incoming>
@@ -36,7 +36,7 @@
       <bpmn:scriptTask id="subScriptTask1" name="Sub script" scriptFormat="JavaScript">
         <bpmn:incoming>toSubScriptTask</bpmn:incoming>
         <bpmn:incoming>toSubScriptTaskTimeout</bpmn:incoming>
-        <bpmn:script>next();</bpmn:script>
+        <bpmn:script>console.log('subScriptTask1');next();</bpmn:script>
       </bpmn:scriptTask>
     </bpmn:subProcess>
     <bpmn:task id="defaultTask" name="Default task">
@@ -65,7 +65,7 @@
     <bpmn:scriptTask id="scriptTask2" name="Only run me once" scriptFormat="JavaScript">
       <bpmn:incoming>toLoop</bpmn:incoming>
       <bpmn:outgoing>toReturnScriptTask</bpmn:outgoing>
-      <bpmn:script>environment.variables.stopLoop = true;
+      <bpmn:script>environment.variables.stopLoop = true;console.log('scriptTask2');
 next();</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:inclusiveGateway id="manyDecisions" default="toPickMe2">
